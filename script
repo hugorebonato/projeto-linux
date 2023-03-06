@@ -1,0 +1,102 @@
+#!/bin/bash
+
+
+echo ">>>>>>>>>>>>Iniciando script de diretórios"
+
+echo ">>>Criando diretórios"
+
+mkdir ./publico
+mkdir ./adm
+mkdir ./ven
+mkdir ./sec
+
+#criando os grupos
+
+read
+
+echo ">>>Criando grupos"
+
+groupadd GRP_ADM
+groupadd GRP_VEN
+groupadd GRP_SEC
+
+#Criando os Usuários
+
+read
+
+echo ">>>Criando usuários"
+
+useradd carlos -m -s /bin/bash -p $(openssl passwd -1 senha)
+useradd maria -m -s /bin/bash -p $(openssl passwd -1 senha )
+useradd joao -m -s /bin/bash -p $(openssl passwd -1 senha )
+
+useradd debora -m -s /bin/bash -p $(openssl passwd -1 senha )
+useradd sebastiana -m -s /bin/bash -p $(openssl passwd -1 senha )
+useradd roberto -m -s /bin/bash -p $(openssl passwd -1 senha )
+
+useradd josefina -m -s /bin/bash -p $(openssl passwd -1 senha)
+useradd amanda -m -s /bin/bash -p $(openssl passwd -1 senha )
+useradd rogerio -m -s /bin/bash -p $(openssl passwd -1 senha )
+
+
+#Definindo os grupos para cada usuário
+
+read
+
+echo ">>>Adicionando os usuários aos grupos"
+
+usermod -a -G GRP_ADM carlos
+usermod -a -G GRP_ADM maria
+usermod -a -G GRP_ADM joao
+
+usermod -a -G GRP_VEN debora
+usermod -a -G GRP_VEN sebastiana
+usermod -a -G GRP_VEN roberto
+
+usermod -a -G GRP_SEC josefina
+usermod -a -G GRP_SEC amanda
+usermod -a -G GRP_SEC rogerio
+
+
+#Definindo permissões para cada diretório
+
+read
+
+echo ">>>Definindo permissões nos diretórios"
+
+chmod 777 publico
+chmod 770 adm
+chmod 770 ven
+chmod 770 sec
+
+
+#Adicionando os grupos nos diretórios
+
+read
+
+echo ">>>Inserindo os grupos dos diretorios"
+
+chgrp GRP_ADM adm
+chgrp GRP_VEN ven
+chgrp GRP_SEC sec
+
+chown root GRP_ADM
+chown root GRP_VEN
+chown root GRP_SEC
+chown root publico
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
